@@ -1,5 +1,5 @@
 <?php
-include("../config/conexion.php");
+include_once("../config/conexion.php");
 $res = $conn->query("CALL sp_factura_select()");
 ?>
 
