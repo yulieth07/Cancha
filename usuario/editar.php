@@ -1,5 +1,5 @@
 <?php
-include("../config/conexion.php");
+include_once("../config/conexion.php");
 
 $id = $_GET['id'];
 $res = $conn->query("SELECT * FROM usuario WHERE id_usuario=$id");
@@ -24,3 +24,4 @@ $u = $res->fetch_assoc();
 
 </body>
 </html>
+
