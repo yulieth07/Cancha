@@ -1,5 +1,5 @@
 <?php
-include("../config/conexion.php");
+include_once("../config/conexion.php");
 
 /* FUNCIÓN DE ESCAPE (ANTI-XSS)*/
 function e($v) {
@@ -91,3 +91,4 @@ if ($_POST) {
 </div>
 </body>
 </html>
+
