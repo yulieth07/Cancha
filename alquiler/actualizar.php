@@ -1,5 +1,5 @@
 <?php
-include("../config/conexion.php");
+include_once("../config/conexion.php");
 
 $stmt = $conn->prepare("CALL sp_alquiler_update(?,?,?,?)");
 $stmt->bind_param(
@@ -12,3 +12,4 @@ $stmt->bind_param(
 $stmt->execute();
 
 header("Location: listar.php");
+
