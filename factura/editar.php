@@ -1,5 +1,5 @@
 <?php
-include("../config/conexion.php");
+include_once("../config/conexion.php");
 $id = $_GET['id'];
 $res = $conn->query("SELECT * FROM factura WHERE id_factura=$id");
 $f = $res->fetch_assoc();
@@ -17,3 +17,4 @@ $f = $res->fetch_assoc();
 </form>
 </body>
 </html>
+
