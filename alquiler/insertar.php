@@ -1,6 +1,14 @@
 <?php
 include("../config/conexion.php");
 
+/* =====================================================
+   🔒 FUNCIÓN DE ESCAPE (ANTI-XSS)
+   👉 SE AGREGA PARA SANITIZAR DATOS DEL USUARIO AL MOSTRARLOS
+   ===================================================== */
+function e($v) {
+    return htmlspecialchars($v, ENT_QUOTES, 'UTF-8');
+}
+
 $deporte = $_GET['deporte'] ?? '';
 $id_cliente = $_GET['id_usuario'] ?? '';
 
@@ -35,6 +43,7 @@ if ($_POST) {
     );
     $stmt->execute();
 
+    // 🔒 El total se sigue enviando, pero luego se ESCAPA al mostrarlo
     header("Location: ../factura/insertar.php?id_usuario=$id_cliente&total=$total");
     exit;
 }
@@ -49,14 +58,10 @@ if ($_POST) {
 </head>
 
 <body class="bg-light">
-    <nav class="navbar navbar-dark bg-dark mb-4 shadow">
-  <div class="container-fluid">
-    <span class="navbar-brand mb-0 h1">
-    </span>
 
-    <a href="../index.php" class="btn btn-outline-light">
-      Volver al Inicio
-    </a>
+<nav class="navbar navbar-dark bg-dark mb-4 shadow">
+  <div class="container-fluid">
+    <a href="../index.php" class="btn btn-outline-light">Volver al Inicio</a>
   </div>
 </nav>
 
@@ -67,7 +72,8 @@ if ($_POST) {
 
 <form method="post">
 
-<input type="hidden" name="deporte" value="<?= $deporte ?>">
+<!-- 🔒 CORRECCIÓN: SE ESCAPA $deporte -->
+<input type="hidden" name="deporte" value="<?= e($deporte) ?>">
 
 <div class="mb-3">
     <input class="form-control" name="ciudad" placeholder="Ciudad" required>
@@ -75,7 +81,8 @@ if ($_POST) {
 
 <div class="mb-3">
     <label>Cancha</label>
-    <input class="form-control" value="<?= $deporte ?>" readonly>
+    <!-- 🔒 CORRECCIÓN: SE ESCAPA $deporte -->
+    <input class="form-control" value="<?= e($deporte) ?>" readonly>
 </div>
 
 <div class="mb-3">
@@ -88,7 +95,8 @@ if ($_POST) {
 
 <div class="mb-3">
     <label>Precio por hora</label>
-    <input class="form-control" value="<?= $precio ?>" readonly>
+    <!-- 🔒 CORRECCIÓN: SE ESCAPA $precio -->
+    <input class="form-control" value="<?= e($precio) ?>" readonly>
 </div>
 
 <div class="mb-3">
