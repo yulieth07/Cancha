@@ -1,5 +1,5 @@
 <?php
-include("../config/conexion.php");
+include_once("../config/conexion.php");
 $res = $conn->query("CALL sp_alquiler_select()");
 ?>
 
@@ -36,3 +36,4 @@ $res = $conn->query("CALL sp_alquiler_select()");
 </table>
 </body>
 </html>
+
