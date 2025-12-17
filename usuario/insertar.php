@@ -1,5 +1,5 @@
 <?php
-include("../config/conexion.php");
+include_once("../config/conexion.php");
 
 $deporte = $_GET['deporte'] ?? 'Futbol';
 
@@ -55,3 +55,4 @@ if ($_POST) {
 </div>
 </body>
 </html>
+
