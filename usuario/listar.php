@@ -1,5 +1,5 @@
 <?php
-include("../config/conexion.php");
+include_once("../config/conexion.php");
 $result = $conn->query("CALL sp_usuario_select()");
 ?>
 
@@ -37,3 +37,4 @@ $result = $conn->query("CALL sp_usuario_select()");
 
 </body>
 </html>
+
