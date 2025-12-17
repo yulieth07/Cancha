@@ -1,5 +1,5 @@
 <?php
-include("../config/conexion.php");
+include_once("../config/conexion.php");
 $id = $_GET['id'];
 $res = $conn->query("SELECT * FROM alquiler WHERE id_alquiler=$id");
 $a = $res->fetch_assoc();
@@ -19,3 +19,4 @@ $a = $res->fetch_assoc();
 </form>
 </body>
 </html>
+
