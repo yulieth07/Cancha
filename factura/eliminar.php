@@ -1,5 +1,5 @@
 <?php
-include("../config/conexion.php");
+include_once("../config/conexion.php");
 
 $stmt = $conn->prepare("CALL sp_factura_delete(?)");
 $stmt->bind_param("i", $_GET['id']);
