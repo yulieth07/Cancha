@@ -1,6 +1,11 @@
 <?php
 include("../config/conexion.php");
 
+/* FUNCIÓN DE ESCAPE (ANTI-XSS)*/
+function e($v) {
+    return htmlspecialchars($v, ENT_QUOTES, 'UTF-8');
+}
+
 $id_usuario = $_GET['id_usuario'] ?? '';
 $total = $_GET['total'] ?? 0;
 
@@ -36,50 +41,50 @@ if ($_POST) {
 
 <?php if($guardado): ?>
 
-    <!-- ✅ MENSAJE DE ÉXITO -->
-    <div class="card p-4 shadow text-center">
-        <h3 class="text-success mb-3">✅ Reserva completada</h3>
-        <p>Tu reserva y factura se registraron correctamente.</p>
+<div class="card p-4 shadow text-center">
+    <h3 class="text-success mb-3">✅ Reserva completada</h3>
+    <p>Tu reserva y factura se registraron correctamente.</p>
 
-        <a href="../index.php" class="btn btn-primary mt-3">
-            Volver al inicio
-        </a>
-    </div>
+    <a href="../index.php" class="btn btn-primary mt-3">
+        Volver al inicio
+    </a>
+</div>
 
 <?php else: ?>
 
-    <!-- 🧾 FORMULARIO FACTURA -->
-    <div class="card p-4 shadow">
-        <h3 class="mb-3">Factura</h3>
+<div class="card p-4 shadow">
+<h3 class="mb-3">Factura</h3>
 
-        <form method="post">
+<form method="post">
 
-            <input type="hidden" name="id_usuario" value="<?= $id_usuario ?>">
+<!-- 🔒 CORRECCIÓN: SE ESCAPA $id_usuario -->
+<input type="hidden" name="id_usuario" value="<?= e($id_usuario) ?>">
 
-            <div class="mb-3">
-                <label>Fecha</label>
-                <input class="form-control" type="date" name="fecha" required>
-            </div>
+<div class="mb-3">
+    <label>Fecha</label>
+    <input class="form-control" type="date" name="fecha" required>
+</div>
 
-            <div class="mb-3">
-                <label>Total a pagar</label>
-                <input class="form-control" name="total" value="<?= $total ?>" readonly>
-            </div>
+<div class="mb-3">
+    <label>Total a pagar</label>
+    <!-- 🔒 CORRECCIÓN: SE ESCAPA $total -->
+    <input class="form-control" name="total" value="<?= e($total) ?>" readonly>
+</div>
 
-            <div class="mb-3">
-                <input class="form-control" name="metodo" placeholder="Método de pago" required>
-            </div>
+<div class="mb-3">
+    <input class="form-control" name="metodo" placeholder="Método de pago" required>
+</div>
 
-            <div class="mb-3">
-                <input class="form-control" name="estado" value="PAGADO" readonly>
-            </div>
+<div class="mb-3">
+    <input class="form-control" name="estado" value="PAGADO" readonly>
+</div>
 
-            <button class="btn btn-success w-100">
-                Finalizar pago
-            </button>
+<button class="btn btn-success w-100">
+    Finalizar pago
+</button>
 
-        </form>
-    </div>
+</form>
+</div>
 
 <?php endif; ?>
 
