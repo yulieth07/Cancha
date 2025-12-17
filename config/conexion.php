@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $user = "root";
-$pass = "";
+$pass = "basededatos";
 $db   = "BORCELLE_SIMPLE";
 
 $conn = new mysqli($host, $user, $pass, $db);
