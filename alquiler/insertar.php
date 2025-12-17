@@ -1,5 +1,5 @@
 <?php
-include("../config/conexion.php");
+include_once("../config/conexion.php");
 
 /* =====================================================
    🔒 FUNCIÓN DE ESCAPE (ANTI-XSS)
@@ -112,3 +112,4 @@ if ($_POST) {
 </div>
 </body>
 </html>
+
